@@ -1,0 +1,11 @@
+{
+    "title": "Ansible pour les devops",
+    "theme": "memories",
+    "duration": 20,
+    "sections": {
+        "main": "",
+            "devops": "Devops",
+            "provisionning": "Provisionning",
+            "ansible": "Ansible"
+    }
+}
