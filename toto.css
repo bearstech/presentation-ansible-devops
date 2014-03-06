@@ -13,3 +13,13 @@ code, pre {
 	font-size: 18pt;
 	line-height: normal;
 }
+
+#slide5 p {
+    text-align: center;
+}
+
+#slide28 h1 {
+
+    text-align: center;
+    font-size: 400%;
+}
