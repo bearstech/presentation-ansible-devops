@@ -5,7 +5,7 @@
     "sections": {
         "main": "",
             "devops": "Devops",
-            "provisionning": "Provisionning",
+            "provisioning": "Provisioning",
             "ansible": "Ansible"
     }
 }
