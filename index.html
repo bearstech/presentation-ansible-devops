@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Ansible pour les devops</title>
+      <link rel="stylesheet" href="css/fonts.css">
+      <link rel="stylesheet" href="css/slideshow.css">
+      <link rel="stylesheet" href="css/theme.css">
+      <link rel="stylesheet" href="toto.css">
+    <link rel="stylesheet" href="css/pygments/solarized.css">
+    <script src="js/prefixfree.min.js"></script>
+  </head>
+  <body data-duration="20">
+    <section>
+      <header class="slide">
+        <h1>Ansible pour les devops</h1>
+        <h2></h2>
+      </header>
+    </section>
+      <section>
+        <header class="slide">
+          <h1></h1>
+        </header>
+          <section class="slide ">
+            <h2>Présentation</h2>
+
+<p>Mathieu Lecarme, développeur R&D chez Bearstech.</p>
+
+<p><a href="mailto:mlecarme@bearstech.com">mlecarme@bearstech.com</a></p>
+
+<p><a href="https://blog.bearstech.com/">https://blog.bearstech.com/</a></p>
+
+<p><em>athoune</em> pour irc, twitter, github…</p>
+
+          </section>
+      </section>
+      <section>
+        <header class="slide">
+          <h1>Devops</h1>
+        </header>
+          <section class="slide ">
+            <h1>Développeur + admin</h1>
+
+<p><img src="Goten-Trunks-Fusion-dragon-ball-all-fusion.png" alt="Fusion"></p>
+
+          </section>
+          <section class="slide ">
+            <h1>Cycle de vie d'un projet</h1>
+
+<ul>
+<li>Développer</li>
+<li>Tester</li>
+<li>Mettre en ligne</li>
+<li>Recommencer</li>
+</ul>
+
+          </section>
+          <section class="slide ">
+            <h2>Développer</h2>
+
+<ul>
+<li>Environnement de travail reproductible</li>
+<li>Build, assets</li>
+<li>Coordination de services</li>
+<li>Virtualisation (Vagrant)</li>
+</ul>
+
+          </section>
+          <section class="slide ">
+            <h2>Tester</h2>
+
+<ul>
+<li>Construire une variante de l'architecture</li>
+<li>Pousser des fixtures</li>
+<li>Test unitaire/fonctionnel/charge/fuzzying</li>
+</ul>
+
+          </section>
+          <section class="slide ">
+            <h2>Mettre en ligne</h2>
+
+<ul>
+<li>Installer, configurer les services</li>
+<li>Déployer, configurer la/les applications</li>
+<li>Brancher le monitoring et les stats</li>
+<li>Utiliser divers services</li>
+</ul>
+
+          </section>
+          <section class="slide ">
+            <h2>Recommencer</h2>
+
+<ul>
+<li>Mettre à jour</li>
+<li>Ajouter, réorganiser les serveurs</li>
+<li>Changer de fournisseur</li>
+<li>Mesurer, améliorer</li>
+</ul>
+
+          </section>
+      </section>
+      <section>
+        <header class="slide">
+          <h1>Provisioning</h1>
+        </header>
+          <section class="slide ">
+            <h1>Le provisioning</h1>
+
+<p>Le périmètre du provisioning est flou.</p>
+
+<p>Il commence là où le build se termine, il assure le déploiement, la configuration et une partie de la maintenance de l'application qui est un assemblage de code métier et de divers services.</p>
+
+<p>Le provisioning n'est absolument pas lié au Cloud, il a tout autant sa place sur le poste d'un dev ou sur des serveurs traditionnels.</p>
+
+          </section>
+          <section class="slide ">
+            <h2>Name dropping</h2>
+
+<ul>
+<li>Puppet</li>
+<li>Chef</li>
+<li>Ansible</li>
+<li>Salt</li>
+<li>Juju</li>
+<li>Cobbler</li>
+<li>…</li>
+</ul>
+
+          </section>
+      </section>
+      <section>
+        <header class="slide">
+          <h1>Ansible</h1>
+        </header>
+          <section class="slide ">
+            
+          </section>
+          <section class="slide ">
+            <h1>Ansible</h1>
+
+<p>Ansible est un outil d'automatisation neutre et prévisible.</p>
+
+<p>Sa courbe d'apprentissage est douce, et il est pertinant de l'utiliser à partir de 1 serveur.</p>
+
+<p>Il n'utilise pas d'agents, et ne requiert qu'un accés SSH et un python sur le serveur.</p>
+
+<p>Largement soutenu par la communauté, il fait partie du top 10 des applications Python sur Github.</p>
+
+          </section>
+          <section class="slide ">
+            <h2>Inventaire</h2>
+
+<p>L'inventaire contient la liste des groupes, des machines à répartir dedans, et des paramètres correspondant à cet inventaire.</p>
+
+<p>L'inventaire peut être statique, ou dynamique (cloud et clusters).</p>
+
+<p>On utilise différents inventaires pour les différents environnements : test, préprod, prod…</p>
+
+          </section>
+          <section class="slide ">
+            <h2>Scénario</h2>
+
+<p>Le scénario regroupe des tâches à effectuer par des groupes de machines.</p>
+
+<p>Le DSL utilisé n'en est pas un, c'est un mélange de YAML et de Jinja2.</p>
+
+<p>La lisibilité des recettes est une priorité.</p>
+
+<p>L'organisation des scénarios est souple.
+Un scénario peut être dédié à une action complexe, comme l'ajout d'un noeud dans un cluster, ou une mise à jour roulante.</p>
+
+          </section>
+          <section class="slide ">
+            <h2>Taches</h2>
+
+<p>Un scénario regroupe des taches.</p>
+
+<p>Les taches font des actions simples, sans paraphraser les choses que l'on connait déjà.</p>
+
+<p>La plupart des taches concernent la création de fichiers de configurations à
+partir de gabarits, et de lignes de commandes traditionnelles.</p>
+
+<p>La commande Shell, bien que déconseillée, est l'arme ultime qui garantit que l'on ne sera jamais coincé.</p>
+
+          </section>
+          <section class="slide ">
+            <h3>Séquentielles</h3>
+
+<p>L'exécution des tâches s'effectue de manière séquentielle, pour limiter les surprises.
+Ansible ne croit pas à la gestion de dépendances et à la parallélisation.</p>
+
+<p>Les actions sur un ensemble de machines sont, elles, parallélisées, par lots de tailles raisonnables.</p>
+
+          </section>
+          <section class="slide ">
+            <h3>Idempotance</h3>
+
+<p>Une action peut être rejouée plusieurs fois.</p>
+
+<p>Une tache vérifie que son action va servir à quelque chose avant de se lancer.</p>
+
+<p>On demande un résultat, pas la méthode pour y arriver.</p>
+
+<p>Normalement, un scénario peut être rejoué sans risques, mais il est plus sage de les travailler dans une VM.</p>
+
+          </section>
+          <section class="slide ">
+            <h2>Variables</h2>
+
+<p>L'utilisation de la syntaxe Jinja dans les divers fichiers YAML, et l'approche
+rigoureuse "Tout est explicite" permet un usage efficace et sans surprise des variables.</p>
+
+<p>Chaque lecture de scénario commence par "La collecte des faits", et permet d'accéder à différentes informations des machines présentent dans l’inventaire (nom de l'OS, adresse IP des différentes interfaces…)</p>
+
+<p>Le résultat d'une action peut être enregistré.</p>
+
+          </section>
+          <section class="slide ">
+            <h3>Gabarits</h3>
+
+<p>Jinja2 est le format de gabarit utilisé par Ansible.
+Standard de fait dans le monde Python, il ne surprend personne
+et ressemble à beaucoup de choses déja vu dans d'autres technologies.</p>
+
+<p>Son système de remplacement de variables et de filtre est aussi utilisé dans les fichiers YAML.</p>
+
+          </section>
+          <section class="slide ">
+            <h3>Boucles</h3>
+
+<p>Ansible a clairement une approche déclarative, orthogonale à la notion de script.</p>
+
+<p>Il est quand même possible d'effectuer des itérations simples, comme installer une liste de paquets.</p>
+
+          </section>
+          <section class="slide ">
+            <h2>Clauses</h2>
+
+<p>Il est possible de rendre certaines parties du flot ansible conditionnel.
+Les taches, évidemment, mais aussi les "includes" ou les rôles.</p>
+
+          </section>
+          <section class="slide ">
+            <h2>Rôles</h2>
+
+<p>Un rôle regroupe un ensemble de taches, et tout ce qui va avec (gabarits, fichiers…).</p>
+
+<p>C'est l'unité de base pour capitaliser le travail entre différents projets.</p>
+
+<p>U rôle peut dépendre d'un autre rôle.</p>
+
+          </section>
+          <section class="slide ">
+            <h2>Notifications</h2>
+
+<p>Pour éviter de devoir faire une action systématiquement, il est possible d'utiliser une notification.
+La notification sera envoyée (à la fin), si la tache a effectué une modification.</p>
+
+<p>Son usage classique et de lier un fichier de conf au redémarrage du service correspondant.</p>
+
+          </section>
+          <section class="slide ">
+            <h1>Démonstration</h1>
+
+          </section>
+      </section>
+      <script src="js/prefixfree.min.js"></script>
+      <script src="js/slideshow.js"></script>
+    <script>slideshow = new SlideShow();</script>
+  </body>
+</html>

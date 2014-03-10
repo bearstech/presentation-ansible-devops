@@ -1,0 +1,25 @@
+body {
+    color: #444444;
+    background-color: white;
+    font-weight: 400;
+}
+
+.slide {
+    text-shadow: none;
+}
+
+code, pre {
+	font-family: Monaco;
+	font-size: 18pt;
+	line-height: normal;
+}
+
+#slide5 p {
+    text-align: center;
+}
+
+#slide28 h1 {
+
+    text-align: center;
+    font-size: 400%;
+}
