@@ -1,4 +1,3 @@
-
 !SLIDE
 
 Ansible
@@ -114,7 +113,7 @@ Un rôle regroupe un ensemble de taches, et tout ce qui va avec (gabarits, fichi
 
 C'est l'unité de base pour capitaliser le travail entre différents projets.
 
-U rôle peut dépendre d'un autre rôle.
+Un rôle peut dépendre d'un autre rôle.
 
 !SLIDE
 Notifications
